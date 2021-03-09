@@ -1,0 +1,22 @@
+# https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
+name: CollectionSpace nightly build
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+
+jobs:
+  nightly:
+    name: CollectionSpace nightly build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build, run and test CollectionSpace
+      run: |
+        ./build_and_run_tests.sh
+
+    # - name: Run the QA automation tests
+    #   run: |
+    #     ./qa_automation.sh
