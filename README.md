@@ -1,5 +1,7 @@
 # CollectionSpace nightly build
 
+[![CollectionSpace nightly build](https://github.com/collectionspace/cspace-nightly-build/actions/workflows/nightly.yml/badge.svg)](https://github.com/collectionspace/cspace-nightly-build/actions/workflows/nightly.yml)
+
 Builds CollectionSpace and runs the tests using [Github Actions](#) every night =)
 
 ## Updating the docker files
