@@ -7,9 +7,13 @@ Builds CollectionSpace and runs the tests using [Github Actions](#) every night 
 The `docker` directory is copied directly from LYRASIS [cspace-deployment](#):
 
 ```bash
-CSD=/path/to/cspace-deployment/docker
+# TODO: scriptify
+CSD=../cspace-deployment/docker
 cp -r $CSD/db/* docker/db/
 cp -r $CSD/dev/* docker/dev/
+rm docker/dev/buildspec.yml
+rm docker/dev/docker-compose-buildspec.yml
+rm docker/dev/make-tomcat-cspace-tarball.sh
 ```
 
 __Do not edit these files manually.__

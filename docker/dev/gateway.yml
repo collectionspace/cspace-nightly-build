@@ -1,0 +1,91 @@
+zuul:
+  routes:
+    core-cspace-services:
+      password: gateway4u
+      path: /core/cspace-services/**
+      url: http://localhost:8180/cspace-services
+      username: gateway@core.collectionspace.org
+    core-es:
+      path: /core/es/**
+      url: http://${ES_HOST}/nuxeo_collectionspace/
+    testsci-cspace-services:
+      password: gateway4u
+      path: /testsci/cspace-services/**
+      url: http://localhost:8180/cspace-services
+      username: gateway@testsci.collectionspace.org
+    testsci-es:
+      path: /testsci/es/**
+      url: http://${ES_HOST}/testsci_collectionspace/
+    lhmc-cspace-services:
+      password: gateway4u
+      path: /lhmc/cspace-services/**
+      url: http://localhost:8180/cspace-services
+      username: gateway@lhmc.collectionspace.org
+    lhmc-es:
+      path: /lhmc/es/**
+      url: http://${ES_HOST}/lhmc_collectionspace/
+    fcart-cspace-services:
+      password: gateway4u
+      path: /fcart/cspace-services/**
+      url: http://localhost:8180/cspace-services
+      username: gateway@fcart.collectionspace.org
+    fcart-es:
+      path: /fcart/es/**
+      url: http://${ES_HOST}/fcart_collectionspace/
+    anthro-cspace-services:
+      password: gateway4u
+      path: /anthro/cspace-services/**
+      url: http://localhost:8180/cspace-services
+      username: gateway@anthro.collectionspace.org
+    anthro-es:
+      path: /anthro/es/**
+      url: http://${ES_HOST}/anthro_collectionspace/
+    materials-cspace-services:
+      password: gateway4u
+      path: /materials/cspace-services/**
+      url: http://localhost:8180/cspace-services
+      username: gateway@materials.collectionspace.org
+    materials-es:
+      path: /materials/es/**
+      url: http://${ES_HOST}/materials_collectionspace/
+      allowedPublishToValues: materialorder,all
+      allowedRecordTypes: CollectionObject,Materialitem
+      recordTypes:
+        CollectionObject:
+          publishToField: collectionobjects_common:publishToList.shortid
+        Materialitem:
+          publishToField: materials_common:publishToList.shortid
+        Media:
+          publishToField: media_materials:publishToList.shortid
+    bonsai-cspace-services:
+      password: gateway4u
+      path: /bonsai/cspace-services/**
+      url: http://localhost:8180/cspace-services
+      username: gateway@bonsai.collectionspace.org
+    bonsai-es:
+      path: /bonsai/es/**
+      url: http://${ES_HOST}/bonsai_collectionspace/
+    botgarden-cspace-services:
+      password: gateway4u
+      path: /botgarden/cspace-services/**
+      url: http://localhost:8180/cspace-services
+      username: gateway@botgarden.collectionspace.org
+    botgarden-es:
+      path: /botgarden/es/**
+      url: http://${ES_HOST}/botgarden_collectionspace/
+    herbarium-cspace-services:
+      password: gateway4u
+      path: /herbarium/cspace-services/**
+      url: http://localhost:8180/cspace-services
+      username: gateway@herbarium.collectionspace.org
+    herbarium-es:
+      path: /herbarium/es/**
+      url: http://${ES_HOST}/herbarium_collectionspace/
+    publicart-cspace-services:
+      password: gateway4u
+      path: /publicart/cspace-services/**
+      url: http://localhost:8180/cspace-services
+      username: gateway@publicart.collectionspace.org
+    publicart-es:
+      path: /publicart/es/**
+      url: http://${ES_HOST}/publicart_collectionspace/

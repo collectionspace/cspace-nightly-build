@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+	</head>
+	<body>
+		<div id="cspace"></div>
+		<script src="https://unpkg.com/cspace-ui@latest/dist/cspaceUI.min.js"></script>
+    <script src="https://unpkg.com/cspace-ui-plugin-profile-materials@latest/dist/cspaceUIPluginProfileMaterials.min.js"></script>
+		<script>
+			cspaceUI({
+				tenantId: "2000",
+				messages: {
+					"about.title": "Materials Profile",
+					"about.contentHTML": "<div><p>CollectionSpace is a free, open-source collections management application for museums, historical societies, natural science collections, and more.</p><p>This is a demo site.</p><ul><li><b>Username:</b> admin@materials.collectionspace.org</li><li><b>Password:</b> Administrator</li></ul></div>",
+				},
+				basename: "/cspace/materials",
+				prettyUrls: true,
+				plugins: [
+          cspaceUIPluginProfileMaterials(),
+        ],
+			});
+		</script>
+	</body>
+</html>

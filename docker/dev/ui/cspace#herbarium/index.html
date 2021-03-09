@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+	</head>
+	<body>
+		<div id="cspace"></div>
+		<script src="https://unpkg.com/cspace-ui@latest/dist/cspaceUI.min.js"></script>
+    <script src="https://unpkg.com/cspace-ui-plugin-profile-herbarium@latest/dist/cspaceUIPluginProfileHerbarium.min.js"></script>
+		<script>
+			cspaceUI({
+				tenantId: "4000",
+				messages: {
+					"about.title": "Herbarium Profile",
+					"about.contentHTML": "<div><p>CollectionSpace is a free, open-source collections management application for museums, historical societies, natural science collections, and more.</p><p>This is a demo site.</p><ul><li><b>Username:</b> admin@herbarium.collectionspace.org</li><li><b>Password:</b> Administrator</li></ul></div>",
+				},
+				basename: "/cspace/herbarium",
+				prettyUrls: true,
+				plugins: [
+          cspaceUIPluginProfileHerbarium(),
+        ],
+			});
+		</script>
+	</body>
+</html>
