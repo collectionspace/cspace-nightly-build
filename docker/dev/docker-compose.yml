@@ -44,7 +44,7 @@ services:
         S3_BINARY_MANAGER_ENABLED: "false"
         ##### JAVA
         ANT_OPTS: -Xmx1024m -XX:MaxPermSize=512m
-        CATALINA_OPTS: -Dfile.encoding=UTF-8 -Duser.timezone=UTC -Xmx2048m -XX:MaxPermSize=384m -Dcors.allowed.origins=*
+        CATALINA_OPTS: -Djava.awt.headless=true -Dfile.encoding=UTF-8 -server -Duser.timezone=UTC -Xmx2048m -Xms2048m -XX:MaxPermSize=384m
         MAVEN_OPTS: -Xmx1024m -XX:MaxPermSize=512m
     ports:
       - "8180:8180"
