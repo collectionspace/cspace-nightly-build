@@ -1,0 +1,19 @@
+webdriver:
+  browser: firefox
+  headless: true
+
+log_level: Logger::DEBUG
+
+timeout:
+  click: 1
+  short: 8
+  medium: 30
+  long: 240
+
+deployment: core
+
+core:
+  base_url: http://localhost:8180
+  admin:
+    username: admin@core.collectionspace.org
+    password: Administrator

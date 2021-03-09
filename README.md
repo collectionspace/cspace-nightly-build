@@ -30,5 +30,6 @@ Simply use the scripts:
 
 ```bash
 ./build_and_run_tests.sh # build collectionspace and run the tests
+# dl geckodriver && firefox (or reconfigure for chrome && chromedriver if preferred)
 ./qa_automation.sh # TODO: run the browser ui tests
 ```
