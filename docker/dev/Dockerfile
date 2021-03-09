@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 MAINTAINER Mark Cooper <mark.c.cooper@outlook.com>
 # TENANT ARGS + ENV
 ARG CSPACE_CORE_CREATE_DISABLED_OPT
@@ -75,6 +75,7 @@ ENV ANT_OPTS=${ANT_OPTS} \
     DB_CSPACE_PASSWORD=${DB_CSPACE_PASSWORD} \
     DB_NUXEO_PASSWORD=${DB_NUXEO_PASSWORD} \
     DB_READER_PASSWORD=${DB_READER_PASSWORD} \
+    DEBIAN_FRONTEND=noninteractive \
     ES_HOST=${ES_HOST} \
     JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 \
     JEE_PORT=8180 \
@@ -88,7 +89,7 @@ ENV ANT_OPTS=${ANT_OPTS} \
     S3_BINARY_MANAGER_SECRET=${S3_BINARY_MANAGER_SECRET} \
     SPRING_CONFIG_LOCATION=classpath:/gateway.yml
 WORKDIR /
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+RUN apt-get update && \
     apt-get -y install --no-install-recommends \
       ant \
       curl \
@@ -111,7 +112,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     mkdir /home/collectionspace && \
     chown -R collectionspace:collectionspace /home/collectionspace /services /application /cspace-public-gateway $CSPACE_JEESERVER_HOME
 USER collectionspace
-# ADD TENTANTS TO THE SERVICES AND APP LAYER
+# ADD TENANTS TO THE SERVICES AND APP LAYER
 WORKDIR /services
 ADD --chown=collectionspace:collectionspace \
     services/ /services/services/common/src/main/cspace/config/services/tenants/
