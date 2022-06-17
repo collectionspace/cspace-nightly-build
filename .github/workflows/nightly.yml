@@ -21,3 +21,10 @@ jobs:
     # - name: Run the QA automation tests
     #   run: |
     #     ./qa_automation.sh
+
+    - name: Ping Slack if the build failed
+      if: ${{ failure() }}
+      id: slack
+      uses: slackapi/slack-github-action@v1.19.0
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
