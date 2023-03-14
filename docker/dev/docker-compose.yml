@@ -8,7 +8,7 @@ services:
         COLLECTIONSPACE_BRANCH: master
         COLLECTIONSPACE_REPOSITORY: https://github.com/collectionspace
         COLLECTIONSPACE_TOMCAT: apache-tomcat-8.5.51
-        COLLECTIONSPACE_VERSION: 6.0
+        COLLECTIONSPACE_VERSION: "7.1"
         CSPACE_ENV: test
         CSPACE_INSTANCE_ID: _collectionspace
         ##### EMAIL
@@ -43,9 +43,9 @@ services:
         S3_BINARY_MANAGER_SECRET: n/a
         S3_BINARY_MANAGER_ENABLED: "false"
         ##### JAVA
-        ANT_OPTS: -Xmx1024m -XX:MaxPermSize=512m
+        ANT_OPTS: -Xmx2048m -XX:MaxPermSize=512m
         CATALINA_OPTS: -Djava.awt.headless=true -Dfile.encoding=UTF-8 -server -Duser.timezone=UTC -Xmx2048m -Xms2048m -XX:MaxPermSize=384m
-        MAVEN_OPTS: -Xmx1024m -XX:MaxPermSize=512m
+        MAVEN_OPTS: -Xmx2048m -XX:MaxPermSize=512m
     ports:
       - "8180:8180"
     depends_on:

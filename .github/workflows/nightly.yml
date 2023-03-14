@@ -6,25 +6,67 @@ on:
     - cron: '0 6 * * *'
   workflow_dispatch:
 
+permissions:
+  pull-requests: write
+  contents: write
+
 jobs:
   nightly:
     name: CollectionSpace nightly build
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Build, run and test CollectionSpace
-      run: |
-        ./build_and_run_tests.sh
-
-    # - name: Run the QA automation tests
-    #   run: |
-    #     ./qa_automation.sh
+      run: ./build_and_run_tests.sh
 
     - name: Ping Slack if the build failed
       if: ${{ failure() }}
       id: slack
-      uses: slackapi/slack-github-action@v1.19.0
+      uses: slackapi/slack-github-action@v1.23.0
+      with:
+        payload: |
+          {
+            "text": "CollectionSpace nightly build result",
+            "blocks": [
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "Failed: ${{ job.status }}\n${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                }
+              }
+            ]
+          }
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+
+  timestamp:
+    name: Refresh project timestamp
+    runs-on: ubuntu-latest
+    needs:
+      - nightly
+    if: needs.nightly.result == 'success'
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Update timestamp
+      run: ./timestamp.sh
+
+    # https://github.com/peter-evans/create-pull-request
+    - name: Create the timestamp PR
+      id: cpr
+      uses: peter-evans/create-pull-request@v4
+      with:
+        author: GitHub <noreply@github.com>
+
+    # https://github.com/juliangruber/merge-pull-request-action
+    - name: Merge the timestamp PR
+      uses: juliangruber/merge-pull-request-action@v1
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        number: ${{ steps.cpr.outputs.pull-request-number }}
+        method: squash # merge rebase

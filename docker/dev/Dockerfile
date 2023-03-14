@@ -114,8 +114,6 @@ RUN apt-get update && \
 USER collectionspace
 # ADD TENANTS TO THE SERVICES AND APP LAYER
 WORKDIR /services
-ADD --chown=collectionspace:collectionspace \
-    services/ /services/services/common/src/main/cspace/config/services/tenants/
 RUN mvn clean install -DskipTests --quiet
 WORKDIR /application
 RUN mvn clean install -DskipTests --quiet
@@ -127,15 +125,11 @@ RUN ant undeploy deploy
 ADD --chown=collectionspace:collectionspace \
     setenv.sh $CSPACE_JEESERVER_HOME/bin/setenv.sh
 ADD --chown=collectionspace:collectionspace \
-    reports/* $CSPACE_JEESERVER_HOME/cspace/reports/
-ADD --chown=collectionspace:collectionspace \
     s3binarymanager.properties $CSPACE_JEESERVER_HOME/nuxeo-server/config/s3binarymanager.properties
 ADD --chown=collectionspace:collectionspace \
     index.html $CSPACE_JEESERVER_HOME/webapps/ROOT/index.html
 ADD --chown=collectionspace:collectionspace \
     *.sh /
-ADD --chown=collectionspace:collectionspace \
-    ui/ $CSPACE_JEESERVER_HOME/webapps/
 # GATEWAY
 ADD --chown=collectionspace:collectionspace \
     gateway.yml $CSPACE_JEESERVER_HOME/lib/gateway.yml
