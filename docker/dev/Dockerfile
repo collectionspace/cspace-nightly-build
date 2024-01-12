@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 MAINTAINER Mark Cooper <mark.c.cooper@outlook.com>
 # TENANT ARGS + ENV
 ARG CSPACE_CORE_CREATE_DISABLED_OPT
@@ -29,7 +29,7 @@ ARG COLLECTIONSPACE_VERSION
 ARG CSPACE_ENV
 ARG CSPACE_INSTANCE_ID
 ARG GATEWAY_REPOSITORY=https://github.com/collectionspace/cspace-public-gateway.git
-ARG GATEWAY_VERSION=1.0.0
+ARG GATEWAY_VERSION=2.0
 # DB
 ARG DB_PORT
 ARG DB_HOST
@@ -93,6 +93,7 @@ RUN apt-get update && \
     apt-get -y install --no-install-recommends \
       ant \
       curl \
+      exiftool \
       git \
       imagemagick \
       maven \
@@ -106,7 +107,7 @@ RUN apt-get update && \
     wget $COLLECTIONSPACE_SERVER && tar -zxvof cspace-server-${COLLECTIONSPACE_VERSION}.tar.gz && \
     git clone -b $COLLECTIONSPACE_BRANCH --single-branch $COLLECTIONSPACE_SERVICES && \
     git clone -b $COLLECTIONSPACE_BRANCH --single-branch $COLLECTIONSPACE_APPLICATION && \
-    git clone $GATEWAY_REPOSITORY && \
+    git clone -b v${GATEWAY_VERSION}-branch $GATEWAY_REPOSITORY && \
     groupadd -g 1000 collectionspace && \
     useradd  -u 1000 -g collectionspace collectionspace && \
     mkdir /home/collectionspace && \
@@ -133,7 +134,7 @@ ADD --chown=collectionspace:collectionspace \
 # GATEWAY
 ADD --chown=collectionspace:collectionspace \
     gateway.yml $CSPACE_JEESERVER_HOME/lib/gateway.yml
-RUN mv /cspace-public-gateway/target/org.collectionspace.publicbrowser-${GATEWAY_VERSION}-SNAPSHOT.war \
+RUN mv /cspace-public-gateway/target/org.collectionspace.publicbrowser.war \
     $CSPACE_JEESERVER_HOME/webapps/gateway.war
 # ADD STARTUP SCRIPTS AND SOME CLEANUP
 RUN chmod u+x /*.sh && \
