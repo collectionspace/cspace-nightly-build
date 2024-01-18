@@ -96,6 +96,7 @@ RUN apt-get update && \
       exiftool \
       git \
       imagemagick \
+      language-pack-en \
       maven \
       openjdk-8-jdk-headless \
       openjdk-8-jre-headless \
