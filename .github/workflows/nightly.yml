@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Build, run and test CollectionSpace
       run: ./build_and_run_tests.sh
@@ -51,7 +51,7 @@ jobs:
     if: needs.nightly.result == 'success'
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Update timestamp
       run: ./timestamp.sh
@@ -59,7 +59,7 @@ jobs:
     # https://github.com/peter-evans/create-pull-request
     - name: Create the timestamp PR
       id: cpr
-      uses: peter-evans/create-pull-request@v4
+      uses: peter-evans/create-pull-request@v7
       with:
         author: GitHub <noreply@github.com>
 
