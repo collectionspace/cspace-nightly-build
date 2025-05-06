@@ -5,10 +5,10 @@ services:
     build:
       context: .
       args:
-        COLLECTIONSPACE_BRANCH: master
+        COLLECTIONSPACE_BRANCH: develop
         COLLECTIONSPACE_REPOSITORY: https://github.com/collectionspace
         COLLECTIONSPACE_TOMCAT: apache-tomcat-8.5.51
-        COLLECTIONSPACE_VERSION: "8.0"
+        COLLECTIONSPACE_VERSION: "8.1"
         CSPACE_ENV: test
         CSPACE_INSTANCE_ID: _collectionspace
         ##### EMAIL
