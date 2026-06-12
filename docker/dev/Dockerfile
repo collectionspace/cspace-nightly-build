@@ -110,9 +110,8 @@ RUN apt-get update && \
     git clone -b $COLLECTIONSPACE_BRANCH --single-branch $COLLECTIONSPACE_SERVICES && \
     git clone -b $COLLECTIONSPACE_BRANCH --single-branch $COLLECTIONSPACE_APPLICATION && \
     git clone -b v${GATEWAY_VERSION}-branch $GATEWAY_REPOSITORY && \
-    groupadd -g 1001 collectionspace && \
-    useradd  -u 1001 -g collectionspace collectionspace && \
-    mkdir /home/collectionspace && \
+    groupmod -n collectionspace ubuntu && \
+    usermod -l collectionspace -d /home/collectionspace -m ubuntu && \
     chown -R collectionspace:collectionspace /home/collectionspace /services /application /cspace-public-gateway $CSPACE_JEESERVER_HOME
 USER collectionspace
 # ADD TENANTS TO THE SERVICES AND APP LAYER
