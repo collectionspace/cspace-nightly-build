@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:26.04
 MAINTAINER Mark Cooper <mark.c.cooper@outlook.com>
 # TENANT ARGS + ENV
 ARG CSPACE_CORE_CREATE_DISABLED_OPT
@@ -45,6 +45,7 @@ ARG CSPACE_SMTP_EMAIL_AUTH_DEBUG_OPT
 ARG CSPACE_SMTP_EMAIL_AUTH_USERNAME_OPT
 ARG CSPACE_SMTP_EMAIL_AUTH_PASSWORD_OPT
 # JAVA
+ARG JAVA_VERSION
 ARG ANT_OPTS
 ARG CATALINA_OPTS
 ARG MAVEN_OPTS
@@ -77,7 +78,7 @@ ENV ANT_OPTS=${ANT_OPTS} \
     DB_READER_PASSWORD=${DB_READER_PASSWORD} \
     DEBIAN_FRONTEND=noninteractive \
     ES_HOST=${ES_HOST} \
-    JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 \
+    JAVA_HOME=/usr/lib/jvm/java-${JAVA_VERSION}-openjdk-amd64 \
     JEE_PORT=8180 \
     LANG=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8 \
@@ -98,8 +99,8 @@ RUN apt-get update && \
       imagemagick \
       language-pack-en \
       maven \
-      openjdk-8-jdk-headless \
-      openjdk-8-jre-headless \
+      openjdk-${JAVA_VERSION}-jdk-headless \
+      openjdk-${JAVA_VERSION}-jre-headless \
       postgresql-client \
       rsync \
       unzip \
@@ -109,8 +110,8 @@ RUN apt-get update && \
     git clone -b $COLLECTIONSPACE_BRANCH --single-branch $COLLECTIONSPACE_SERVICES && \
     git clone -b $COLLECTIONSPACE_BRANCH --single-branch $COLLECTIONSPACE_APPLICATION && \
     git clone -b v${GATEWAY_VERSION}-branch $GATEWAY_REPOSITORY && \
-    groupadd -g 1000 collectionspace && \
-    useradd  -u 1000 -g collectionspace collectionspace && \
+    groupadd -g 1001 collectionspace && \
+    useradd  -u 1001 -g collectionspace collectionspace && \
     mkdir /home/collectionspace && \
     chown -R collectionspace:collectionspace /home/collectionspace /services /application /cspace-public-gateway $CSPACE_JEESERVER_HOME
 USER collectionspace
