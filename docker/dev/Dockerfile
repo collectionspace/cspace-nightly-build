@@ -98,6 +98,7 @@ RUN apt-get update && \
       git \
       imagemagick \
       language-pack-en \
+      libharfbuzz0b \
       maven \
       openjdk-${JAVA_VERSION}-jdk-headless \
       openjdk-${JAVA_VERSION}-jre-headless \
